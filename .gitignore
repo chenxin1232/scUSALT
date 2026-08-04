@@ -1,0 +1,23 @@
+# Data (large .h5ad files)
+Data/
+*.h5ad
+
+# Outputs & checkpoints
+output_scUSALT/
+models/
+*.pth
+*.pth.tar
+*.tar
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
