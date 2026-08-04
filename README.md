@@ -1,8 +1,6 @@
 # scUSALT
 
-Semi-supervised **label transfer from scRNA-seq → scATAC-seq**.
-
-Learns a shared embedding with MNN alignment, **graph contrastive learning** (ATAC peaks), and **domain-adversarial alignment**, then transfers labels by kNN.
+scUSALT is a structure- and alignment-aware framework for cross-modal label transfer from scRNA-seq to scATAC-seq. It learns a shared latent space via embedding regularization, cross-modal anchor alignment, domain-adversarial alignment, graph contrastive learning on peak-derived ATAC neighborhoods, and RNA reference-label supervision, then transfers cell-type annotations to unlabeled scATAC-seq cells.
 
 ## Setup
 
