@@ -34,8 +34,8 @@ class Setting(object):
             # Training setting            
             self.batch_size = 256
             self.lr = 0.008
-            self.lr_decay_epoch = 20  # 延迟学习率衰减，给更多时间学习
-            self.epochs = 20  # 增加训练轮数（22类细胞，对齐难度大）
+            self.lr_decay_epoch = 30  # 延迟学习率衰减，给更多时间学习
+            self.epochs = 30  # 增加训练轮数（22类细胞，对齐难度大）
             self.embedding_size = 64
             self.momentum = 0.9
             self.seed = 1
@@ -53,15 +53,15 @@ class Setting(object):
             # Training setting            
             self.batch_size = 256
             self.lr = 0.008
-            self.lr_decay_epoch = 20  # 延迟学习率衰减，给更多时间学习
-            self.epochs = 20  # 增加训练轮数（22类细胞，对齐难度大）
+            self.lr_decay_epoch = 30  # 延迟学习率衰减，给更多时间学习
+            self.epochs = 30  # 增加训练轮数（22类细胞，对齐难度大）
             self.embedding_size = 64
             self.momentum = 0.9
             self.seed = 1
             self.checkpoint = ''    
             
         if DB == "BMMC_2":
-            self.number_of_class = 20 
+            self.number_of_class = 30 
             self.input_size = 11407
             self.rna_paths = ['Data/Data-2/rna_2_filter.h5ad']
             self.atac_paths = ['Data/Data-2/atac_2_filter.h5ad']
@@ -73,8 +73,8 @@ class Setting(object):
             # Training setting            
             self.batch_size = 256
             self.lr = 0.008
-            self.lr_decay_epoch = 20
-            self.epochs = 20
+            self.lr_decay_epoch = 30
+            self.epochs = 30
             self.embedding_size = 64
             self.momentum = 0.9
             self.seed = 1
@@ -94,8 +94,8 @@ class Setting(object):
             # Training setting            
             self.batch_size = 256
             self.lr = 0.008 
-            self.lr_decay_epoch = 20
-            self.epochs = 20
+            self.lr_decay_epoch = 30
+            self.epochs = 30
             self.embedding_size = 64
             self.momentum = 0.9
             self.seed = 1
@@ -103,7 +103,7 @@ class Setting(object):
             
             
         if DB == "BMMC_4":
-            self.number_of_class = 20
+            self.number_of_class = 30
             self.input_size = 11450
             self.rna_paths = ['Data/Data-4/rna_4_filter.h5ad']
             self.atac_paths = ['Data/Data-4/atac_4_filter.h5ad']
@@ -115,8 +115,8 @@ class Setting(object):
             # Training setting            
             self.batch_size = 256
             self.lr = 0.008
-            self.lr_decay_epoch = 20
-            self.epochs = 20
+            self.lr_decay_epoch = 30
+            self.epochs = 30
             self.embedding_size = 64
             self.momentum = 0.9
             self.seed = 1
@@ -136,8 +136,8 @@ class Setting(object):
             # Training setting            
             self.batch_size = 256
             self.lr = 0.008
-            self.lr_decay_epoch = 20
-            self.epochs = 20
+            self.lr_decay_epoch = 30
+            self.epochs = 30
             self.embedding_size = 64
             self.momentum = 0.9
             self.seed = 1
@@ -156,8 +156,8 @@ class Setting(object):
             # Training setting            
             self.batch_size = 256 
             self.lr = 0.008
-            self.lr_decay_epoch = 20
-            self.epochs = 20
+            self.lr_decay_epoch = 30
+            self.epochs = 30
             self.embedding_size = 64
             self.momentum = 0.9
             self.seed = 1
@@ -197,8 +197,8 @@ class Setting(object):
         #     # Training setting            
         #     self.batch_size = 256
         #     self.lr = 0.008
-        #     self.lr_decay_epoch = 20
-        #     self.epochs = 20
+        #     self.lr_decay_epoch = 30
+        #     self.epochs = 30
         #     self.embedding_size = 64
         #     self.momentum = 0.9
         #     self.seed = 1
@@ -217,8 +217,8 @@ class Setting(object):
         #     # Training setting            
         #     self.batch_size = 256
         #     self.lr = 0.008
-        #     self.lr_decay_epoch = 20
-        #     self.epochs = 20
+        #     self.lr_decay_epoch = 30
+        #     self.epochs = 30
         #     self.embedding_size = 64
         #     self.momentum = 0.9
         #     self.seed = 1
@@ -236,8 +236,8 @@ class Setting(object):
             # Training setting            
             self.batch_size = 256
             self.lr = 0.008
-            self.lr_decay_epoch = 20  # 稍微延迟学习率衰减
-            self.epochs = 20  # 增加训练轮数以获得更好的收敛
+            self.lr_decay_epoch = 30  # 稍微延迟学习率衰减
+            self.epochs = 30  # 增加训练轮数以获得更好的收敛
             self.embedding_size = 64
             self.momentum = 0.9
             self.seed = 1
@@ -256,8 +256,8 @@ class Setting(object):
             # Training setting            
             self.batch_size = 256
             self.lr = 0.008
-            self.lr_decay_epoch = 20
-            self.epochs = 20
+            self.lr_decay_epoch = 30
+            self.epochs = 30
             self.embedding_size = 64
             self.momentum = 0.9
             self.seed = 1
@@ -275,8 +275,8 @@ class Setting(object):
             # Training setting            
             self.batch_size = 256
             self.lr = 0.008
-            self.lr_decay_epoch = 20
-            self.epochs = 20
+            self.lr_decay_epoch = 30
+            self.epochs = 30
             self.embedding_size = 64
             self.momentum = 0.9
             self.seed = 1
@@ -294,8 +294,8 @@ class Setting(object):
             # Training setting            
             self.batch_size = 256
             self.lr = 0.008
-            self.lr_decay_epoch = 20
-            self.epochs = 20
+            self.lr_decay_epoch = 30
+            self.epochs = 30
             self.embedding_size = 64
             self.momentum = 0.9
             self.seed = 1
@@ -305,8 +305,8 @@ class Setting(object):
         if DB == "adbrainCortex":
             # Unique cell_type strings in obs (13; two clusters share name "L4")
             self.number_of_class = 13
-            # Must match rna.h5ad / atac.h5ad n_vars (scJoint common genes = 2088)
-            self.input_size = 2088
+            # Must match rna.h5ad / atac.h5ad n_vars (scJoint common genes = 3088)
+            self.input_size = 3088
             self.rna_paths = ['Data/adbrainCortex/adbrainCortex_rna.h5ad'] 
             self.atac_paths = ['Data/adbrainCortex/adbrainCortex_atac.h5ad'] 
             self.rna_protein_paths = [] 
@@ -317,8 +317,8 @@ class Setting(object):
             # Training setting            
             self.batch_size = 256
             self.lr = 0.008
-            self.lr_decay_epoch = 20
-            self.epochs = 20
+            self.lr_decay_epoch = 30
+            self.epochs = 30
             self.embedding_size = 64
             self.momentum = 0.9
             self.seed = 1
@@ -337,8 +337,8 @@ class Setting(object):
 
             self.batch_size = 256
             self.lr = 0.008
-            self.lr_decay_epoch = 20
-            self.epochs = 20
+            self.lr_decay_epoch = 30
+            self.epochs = 30
             self.embedding_size = 64
             self.momentum = 0.9
             self.seed = 1
@@ -356,8 +356,8 @@ class Setting(object):
 
             self.batch_size = 256
             self.lr = 0.008
-            self.lr_decay_epoch = 20
-            self.epochs = 20
+            self.lr_decay_epoch = 30
+            self.epochs = 30
             self.embedding_size = 64
             self.momentum = 0.9
             self.seed = 1
@@ -375,7 +375,7 @@ class Setting(object):
 
             self.batch_size = 256
             self.lr = 0.008
-            self.lr_decay_epoch = 20
+            self.lr_decay_epoch = 30
             self.epochs = 2
             self.embedding_size = 64
             self.momentum = 0.9
@@ -395,8 +395,8 @@ class Setting(object):
 
             self.batch_size = 256
             self.lr = 0.008
-            self.lr_decay_epoch = 20
-            self.epochs = 20
+            self.lr_decay_epoch = 30
+            self.epochs = 30
             self.embedding_size = 64
             self.momentum = 0.9
             self.seed = 1
@@ -414,8 +414,8 @@ class Setting(object):
             # Training setting            
             self.batch_size = 256
             self.lr = 0.008
-            self.lr_decay_epoch = 20
-            self.epochs = 20
+            self.lr_decay_epoch = 30
+            self.epochs = 30
             self.embedding_size = 64
             self.momentum = 0.9
             self.seed = 1
