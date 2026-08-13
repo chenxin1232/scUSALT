@@ -147,8 +147,8 @@ def Transfer(setting, neighbors = 30, knn_rna_samples = 50000):
     
     top10_Dist, top10_neighbors = neigh.kneighbors(atac_embeddings, neighbors) 
     
-    a = 0.2
-    b = 0.8
+    a = 0.5
+    b = 0.5
     atac_Kscore = compute_Kscore(top10_neighbors,rna_label_knn)
     atac_Dscore = compute_Dscore(rna_label_knn,atac_embeddings,rna_embedding_knn)
     atac_score = a*atac_Kscore + b*atac_Dscore
@@ -182,8 +182,11 @@ def Transfer(setting, neighbors = 30, knn_rna_samples = 50000):
     fp_pre.close()
     if setting.atac_labels is True:
         atac_labels_str = sc.read((setting.atac_paths[0])).obs['cell_type'].tolist()
-        atac_true = np.array([rna_index[str(label)] for label in atac_labels_str])
-        atac_pre = np.array(atac_predict)
+        eval_mask = np.array([str(label) in rna_index for label in atac_labels_str])
+        atac_true = np.array(
+            [rna_index[str(label)] for label, keep in zip(atac_labels_str, eval_mask) if keep]
+        )
+        atac_pre = np.asarray(atac_predict)[eval_mask]
         eval_label_ids = sorted(set(atac_true.tolist()) | set(atac_pre.tolist()))
 
         print('[Label transfer] Eval cells: %d' % len(atac_labels_str))
