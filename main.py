@@ -32,7 +32,7 @@ def main():
     
     # Label transfer
     print('Label transfer:')
-    Transfer(setting, neighbors = 10, knn_rna_samples=50000)
+    Transfer(setting, neighbors = 20, knn_rna_samples=50000)
     print('Label transfer finished: ', datetime.now().strftime('%H:%M:%S'))
     
     end_time = time.time()
