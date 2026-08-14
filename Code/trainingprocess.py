@@ -75,16 +75,18 @@ class Training():
         self.criterion_encoding = EncodingLoss(dim=setting.embedding_size, use_gpu = self.setting.use_cuda)
         self.l1_regular = L1regularization()
 
-        # 对抗对齐（分布对齐）：始终启用
-        self.lambda_adv = getattr(self.setting, "lambda_adv", 0.1)
-        self.adv_warmup_epochs = getattr(self.setting, "adv_warmup_epochs", 0)
+        self.lambda_adv = getattr(self.setting, "lambda_adv", 0.08)
+        self.adv_warmup_epochs = getattr(self.setting, "adv_warmup_epochs", 5)
         if self.setting.use_cuda:
             self.domain_disc = torch.nn.DataParallel(
                 DomainDiscriminator(in_dim=self.setting.embedding_size).to(self.setting.device)
             )
         else:
             self.domain_disc = DomainDiscriminator(in_dim=self.setting.embedding_size).to(self.setting.device)
-        self.optimizer_domain = optim.SGD(self.domain_disc.parameters(), lr=self.setting.lr, momentum=self.setting.momentum, weight_decay=0)
+        self.optimizer_domain = optim.SGD(
+            self.domain_disc.parameters(), lr=self.setting.lr,
+            momentum=self.setting.momentum, weight_decay=0
+        )
         
         # initialize optimizer (sgd/momemtum/weight decay)
         self.optimizer_encoder = optim.SGD(self.model_encoder.parameters(), lr=self.setting.lr, momentum=self.setting.momentum,
@@ -178,18 +180,19 @@ class Training():
             encoding_loss = self.criterion_encoding(atac_embeddings, rna_embeddings,rna_labels,peak_data)
             regularization_loss_encoder = self.l1_regular(self.model_encoder)            
 
-            # 对抗对齐损失：用当前 batch 的 RNA/ATAC embedding 做模态判别
-            # warmup：前 adv_warmup_epochs 轮 lambd=0
+            adv_loss = 0.0
+            # warmup 前 adv_warmup_epochs 轮：λ=0，不算对抗 loss
             lambd = self.lambda_adv if epoch >= self.adv_warmup_epochs else 0.0
-            z_rna = rna_embeddings[0]
-            z_atac = atac_embeddings[0]
-            z = torch.cat([z_rna, z_atac], dim=0)
-            y_domain = torch.cat([
-                torch.zeros(z_rna.size(0), dtype=torch.long, device=z.device),
-                torch.ones(z_atac.size(0), dtype=torch.long, device=z.device),
-            ], dim=0)
-            logits = self.domain_disc(grl(z, lambd=lambd))
-            adv_loss = F.cross_entropy(logits, y_domain)
+            if lambd > 0:
+                z_rna = rna_embeddings[0]
+                z_atac = atac_embeddings[0]
+                z = torch.cat([z_rna, z_atac], dim=0)
+                y_domain = torch.cat([
+                    torch.zeros(z_rna.size(0), dtype=torch.long, device=z.device),
+                    torch.ones(z_atac.size(0), dtype=torch.long, device=z.device),
+                ], dim=0)
+                logits = self.domain_disc(grl(z, lambd=lambd))
+                adv_loss = F.cross_entropy(logits, y_domain)
             
             cell_loss = self.criterion_cell(rna_cell_predictions[0], rna_labels[0]) #torch.Size([256, 7]),torch.Size([256])
             for i in range(1, len(rna_cell_predictions)):

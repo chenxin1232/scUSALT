@@ -3,7 +3,7 @@ import os
 
 class Setting(object):
     def __init__(self):
-        DB = 'CITE_ASAP' #MCA_subset #CITE_ASAP #ms #PBMC #brain 
+        DB = 'hematopoiesis' #MCA_subset #CITE_ASAP #ms #PBMC #brain 
         self.use_cuda = False
         self.threads = 1
 
@@ -12,15 +12,13 @@ class Setting(object):
         else:
             self.device = torch.device('cuda:0')
 
-        # Graph contrastive learning（始终启用）
-        # Positives: peak KNN graph neighbors within the ATAC mini-batch; Negatives: other batch samples.
+       
         self.graph_contrastive_weight = 1
         self.graph_contrastive_tau = 0.3
         self.graph_pos_threshold = 0.8
         self.graph_pos_symmetric = True
-        # Adversarial alignment（始终启用）
-        self.lambda_adv = 0.08  # 最优值
-        self.adv_warmup_epochs = 5  # 最优值
+        self.lambda_adv = 0.08
+        self.adv_warmup_epochs = 5
         if DB == "BMMC_1":
             self.number_of_class = 22 # Number of cell types in scRNA-seq
             self.input_size = 11362
