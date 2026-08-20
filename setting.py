@@ -141,105 +141,7 @@ class Setting(object):
             self.seed = 1
             self.checkpoint = ''
             
-        if DB == "MCA_subset":
-            self.number_of_class = 14 
-            self.input_size = 17057 
-            self.rna_paths = ['Data/Data-6/adata_mca_gem.h5ad']
-            self.atac_paths = ['Data/Data-6/adata_mca_gam.h5ad']
-            self.rna_protein_paths = [] 
-            self.atac_protein_paths = [] 
-            self.peak_paths = ['Data/Data-6/adata_mca_peak.h5ad']
-            self.atac_labels = True
-            
-            # Training setting            
-            self.batch_size = 256 
-            self.lr = 0.008
-            self.lr_decay_epoch = 30
-            self.epochs = 30
-            self.embedding_size = 64
-            self.momentum = 0.9
-            self.seed = 1
-            self.checkpoint = ''
-            
-        if DB == "ms":
-            self.number_of_class = 10 
-            self.input_size = 11055 
-            self.rna_paths = ['Data/Data-5/ms_rna.h5ad']
-            self.atac_paths = ['Data/Data-5/ms_atac.h5ad']
-            self.rna_protein_paths = [] 
-            self.atac_protein_paths = [] 
-            self.peak_paths = ['Data/Data-5/ms_PCA50.h5ad']
-            self.atac_labels = True
-            
-            # Training setting            
-            self.batch_size = 256
-            self.lr = 0.008 
-            self.lr_decay_epoch = 30  # 更新为最优值（基于sweep结果）
-            self.epochs = 30
-            self.embedding_size = 64
-            self.momentum = 0.9
-            self.seed = 1
-            self.checkpoint = ''
-    
-            
-        # if DB == "brain":
-        #     self.number_of_class = 23
-        #     self.input_size = 17403
-        #     self.rna_paths = ['data_brain/brain_rna.h5ad']
-        #     self.atac_paths = ['data_brain/brain_atac.h5ad']
-        #     self.rna_protein_paths = [] 
-        #     self.atac_protein_paths = [] 
-        #     self.peak_paths = ['data_brain/brain_PCA50.h5ad']
-        #     self.atac_labels = False
-            
-        #     # Training setting            
-        #     self.batch_size = 256
-        #     self.lr = 0.008
-        #     self.lr_decay_epoch = 30
-        #     self.epochs = 30
-        #     self.embedding_size = 64
-        #     self.momentum = 0.9
-        #     self.seed = 1
-        #     self.checkpoint = '' 
-            
-        # if DB == "hf":
-        #     self.number_of_class = 15
-        #     self.input_size = 17187
-        #     self.rna_paths = ['data_hf/hf_rna.h5ad'] 
-        #     self.atac_paths = ['data_hf/hf_atac_data_1k.h5ad'] 
-        #     self.rna_protein_paths = [] 
-        #     self.atac_protein_paths = [] 
-        #     self.peak_paths = ['data_hf/hf_PCA50.h5ad']
-        #     self.atac_labels = False
-            
-        #     # Training setting            
-        #     self.batch_size = 256
-        #     self.lr = 0.008
-        #     self.lr_decay_epoch = 30
-        #     self.epochs = 30
-        #     self.embedding_size = 64
-        #     self.momentum = 0.9
-        #     self.seed = 1
-        #     self.checkpoint = ''
-        if DB == "PBMC":
-            self.number_of_class = 19
-            self.input_size = 18353
-            self.rna_paths = ['Data/pbmc_10x/adata_rna_common_genes.h5ad'] 
-            self.atac_paths = ['Data/pbmc_10x/adata_atac_gam_common_genes.h5ad'] 
-            self.rna_protein_paths = [] 
-            self.atac_protein_paths = [] 
-            self.peak_paths = ['Data/pbmc_10x/pbmc_atac_lsi.h5ad']
-            self.atac_labels = True
-            
-            # Training setting            
-            self.batch_size = 256
-            self.lr = 0.008
-            self.lr_decay_epoch = 30  # 稍微延迟学习率衰减
-            self.epochs = 30  # 增加训练轮数以获得更好的收敛
-            self.embedding_size = 64
-            self.momentum = 0.9
-            self.seed = 1
-            self.checkpoint = ''
+       
          
         if DB == "ms_sub":
             self.number_of_class = 29
@@ -260,25 +162,7 @@ class Setting(object):
             self.momentum = 0.9
             self.seed = 1
             self.checkpoint = ''    
-        if DB == "ms_os":
-            self.number_of_class = 29
-            self.input_size = 15519
-            self.rna_paths = ['Data/ms_os/adata_rna_facs.h5ad'] 
-            self.atac_paths = ['Data/ms_os/adata_atac_cache.h5ad'] 
-            self.rna_protein_paths = [] 
-            self.atac_protein_paths = [] 
-            self.peak_paths = ['Data/ms_osMCAOS_atac_tsne.h5ad']
-            self.atac_labels = True
-            
-            # Training setting            
-            self.batch_size = 256
-            self.lr = 0.008
-            self.lr_decay_epoch = 30
-            self.epochs = 30
-            self.embedding_size = 64
-            self.momentum = 0.9
-            self.seed = 1
-            self.checkpoint = ''   
+        
         if DB == "hematopoiesis":
             self.number_of_class = 9
             self.input_size = 15714
@@ -322,25 +206,7 @@ class Setting(object):
             self.seed = 1
             self.checkpoint = ''
 
-        if DB == "endo":
-            # Must match unique obs['cell_type'] in endo_rna.h5ad (currently 16)
-            self.number_of_class = 16
-            self.input_size = 24438
-            self.rna_paths = ['Data/endo/endo_rna.h5ad']
-            self.atac_paths = ['Data/endo/endo_atac.h5ad']
-            self.rna_protein_paths = []
-            self.atac_protein_paths = []
-            self.peak_paths = ['Data/endo/endo_atac_pca50.h5ad']
-            self.atac_labels = True
-
-            self.batch_size = 256
-            self.lr = 0.008
-            self.lr_decay_epoch = 30
-            self.epochs = 30
-            self.embedding_size = 64
-            self.momentum = 0.9
-            self.seed = 1
-            self.checkpoint = ''
+       
 
         if DB == "pairkidney":
             self.number_of_class = 13
@@ -361,24 +227,7 @@ class Setting(object):
             self.seed = 1
             self.checkpoint = ''
 
-        if DB == "bcc":
-            self.number_of_class = 19
-            self.input_size = 17582
-            self.rna_paths = ['Data/bcc/bcc_rna.h5ad']
-            self.atac_paths = ['Data/bcc/bcc_atac.h5ad']
-            self.rna_protein_paths = []
-            self.atac_protein_paths = []
-            self.peak_paths = ['Data/bcc/bcc_atac_pca50.h5ad']
-            self.atac_labels = True
-
-            self.batch_size = 256
-            self.lr = 0.008
-            self.lr_decay_epoch = 30
-            self.epochs = 2
-            self.embedding_size = 64
-            self.momentum = 0.9
-            self.seed = 1
-            self.checkpoint = ''
+       
         if DB == "unpairkidney":
             # RNA reference has 15 types; ATAC eval uses 11 shared types after build filtering.
             self.number_of_class = 15
