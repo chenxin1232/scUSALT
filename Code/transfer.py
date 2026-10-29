@@ -44,6 +44,24 @@ def _label_column_count(rna_label_knn):
     return int(np.max(rna_label_knn)) + 1
 
 
+def _ordered_type_names(rna_index, n_labels):
+    id_to_name = reverse_mapping(rna_index)
+    return [str(id_to_name[i]) for i in range(n_labels)]
+
+
+def write_type_scores(output_dir, db_name, atac_score, rna_index):
+    """Per ATAC cell, write transfer score for every reference cell type (long table)."""
+    n_cells, n_labels = atac_score.shape
+    type_names = _ordered_type_names(rna_index, n_labels)
+    path = os.path.join(output_dir, db_name + '_type_prediction_confidence.tsv')
+    with open(path, 'w', encoding='utf-8') as fp:
+        fp.write('cell_index\tcell_type\tconfidence_score\n')
+        for i in range(n_cells):
+            for j in range(n_labels):
+                fp.write(f'{i}\t{type_names[j]}\t{atac_score[i, j]:.6f}\n')
+    print('[Label transfer] Wrote per-type scores: ' + path)
+
+
 def compute_Kscore(top10_neighbors, rna_label_knn):
     n_labels = _label_column_count(rna_label_knn)
     atac_K_score = np.zeros([top10_neighbors.shape[0], n_labels])
@@ -180,6 +198,7 @@ def Transfer(setting, neighbors = 30, knn_rna_samples = 50000):
     for i in range(0,atac_predict.shape[0]):
         fp_pre.write(str(atac_predict_label[i])+'\n')
     fp_pre.close()
+    write_type_scores('./output_scUSALT/', db_name, atac_score, rna_index)
     if setting.atac_labels is True:
         atac_labels_str = sc.read((setting.atac_paths[0])).obs['cell_type'].tolist()
         eval_mask = np.array([str(label) in rna_index for label in atac_labels_str])

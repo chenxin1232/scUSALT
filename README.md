@@ -24,7 +24,11 @@ self.use_cuda = False  # True for GPU
 python main.py
 ```
 
-Outputs in `output_scUSALT/`: `*_embeddings.txt`, `*_predictions.txt`.
+Outputs in `output_scUSALT/`:
+
+- `*_embeddings.txt` — RNA / ATAC latent vectors
+- `*_predictions.txt` — one predicted cell type per ATAC cell (argmax)
+- `*_type_prediction_confidence.tsv` — long table (`a × N` rows): `cell_index`, `cell_type`, `confidence_score` (0.5×K + 0.5×D for that type)
 
 ## Data
 
