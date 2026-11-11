@@ -31,7 +31,10 @@ Outputs in `output_scUSALT/`:
 - `*_type_prediction_confidence.tsv` — long table (`a × N` rows): `cell_index`, `cell_type`, `confidence_score` (0.5×K + 0.5×D for that type)
 
 ## Data
-
+Processed datasets used in the paper can be downloaded from Baidu Netdisk:
+- Link: https://pan.baidu.com/s/1VsrRqoofLZMbS13neVx9bw?pwd=65dh  
+- Extraction code: `65dh`
+  
 | File | Role |
 |------|------|
 | RNA `.h5ad` | Reference; needs `obs['cell_type']` |
