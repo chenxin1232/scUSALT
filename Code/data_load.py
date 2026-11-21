@@ -71,7 +71,7 @@ def read_from_file(data_path, protien_path = None ,peak_path = None,label = Fals
         label_index, labels = str_convert_to_numeric(data_reader.obs['cell_type'].tolist())
     if protien_path is not None:
         protien_path = os.path.join(os.path.realpath('.'), protien_path)    
-        protein_reader = h5ad_read(protien_path).X
+        protein_reader = sc.read(protien_path).X
     if peak_path is not None:
         peak_path = os.path.join(os.path.realpath('.'), peak_path)    
         peak_reader = sc.read(peak_path).X
