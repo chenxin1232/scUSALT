@@ -27,8 +27,8 @@ def h5ad_read(file_name):
     print('load h5ad matrix:', file_name)
     data = sc.read(file_name)
     # data.X = normalize_csr_matrix_columns(data.X)
-    # sc.pp.normalize_total(data,exclude_highly_expressed=True)
-    # sc.pp.log1p(data)
+    sc.pp.normalize_total(data, target_sum=1e4, exclude_highly_expressed=True)
+    sc.pp.log1p(data)
     # sc.pp.scale(data, max_value=10) 
     # data.X = csr_matrix(data.X)
     return data
@@ -74,7 +74,7 @@ def read_from_file(data_path, protien_path = None ,peak_path = None,label = Fals
         protein_reader = h5ad_read(protien_path).X
     if peak_path is not None:
         peak_path = os.path.join(os.path.realpath('.'), peak_path)    
-        peak_reader = h5ad_read(peak_path).X
+        peak_reader = sc.read(peak_path).X
     data_reader = data_reader.X
     return data_reader, labels, label_index, protein_reader, peak_reader
 
